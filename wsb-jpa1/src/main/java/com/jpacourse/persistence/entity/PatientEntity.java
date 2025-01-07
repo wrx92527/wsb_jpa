@@ -2,15 +2,11 @@ package com.jpacourse.persistence.entity;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.mail.Address;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "PATIENT")
+@Table(name = "patient")
 public class PatientEntity {
 
 	@Id
@@ -23,16 +19,31 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private String lastName;
 
-	@Column(nullable = false)
+	@Column(
+		nullable = false,
+		length = 15
+	)
 	private String telephoneNumber;
 
+	@Column(length = 150)
 	private String email;
 
-	@Column(nullable = false)
+	@Column(
+		nullable = false,
+		unique = true,
+		length = 100
+	)
 	private String patientNumber;
 
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(
+		name = "address_id",
+		foreignKey = @ForeignKey(name = "fk_patient_address")
+	)
+	private AddressEntity address;
 
 	public Long getId() {
 		return id;
@@ -90,4 +101,11 @@ public class PatientEntity {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+    public AddressEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressEntity address) {
+        this.address = address;
+    }
 }
