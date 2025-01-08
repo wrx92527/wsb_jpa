@@ -26,6 +26,7 @@ public class VisitEntity {
 	)
 	private DoctorEntity doctor;
 
+	//Relacja od strony dziecka, visit to dziecko
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(
 		name = "patient_id",
