@@ -16,4 +16,6 @@ public interface PatientServiceInterface {
         LocalDateTime visitDate,
         String visitReason
     );
+
+    public void deletePatientById(Long id);
 }

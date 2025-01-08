@@ -3,6 +3,7 @@ package com.jpacourse.service.impl;
 import com.jpacourse.dto.PatientTO;
 import com.jpacourse.mapper.PatientMapper;
 import com.jpacourse.persistence.dao.PatientDao;
+import com.jpacourse.persistence.entity.PatientEntity;
 import com.jpacourse.service.PatientServiceInterface;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +42,11 @@ public class DaoPatientService implements PatientServiceInterface {
         String visitReason
     ) {
         patientDao.scheduleVisit(patientId, doctorId, visitDate, visitReason);
+    }
+
+    public void deletePatientById(Long id) {
+        PatientEntity patient = patientDao.findOne(id);
+
+        patientDao.delete(patient);
     }
 }

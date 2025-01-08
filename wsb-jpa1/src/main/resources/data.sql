@@ -5,8 +5,8 @@ VALUES
 
 INSERT INTO Doctor (ID, FIRST_NAME, LAST_NAME, TELEPHONE_NUMBER, EMAIL, DOCTOR_NUMBER, SPECIALIZATION)
 VALUES
-    (1, 'Anna', 'Kowalska', '123456789', 'anna.kowalska@example.com', 'DOC001', 'Kardiologia')
-  , (2, 'Jan', 'Nowak', '987654321', 'jan.nowak@example.com', 'DOC002', 'Ortopedia');
+    (1, 'Anna', 'Kowalska', '123456789', 'anna.kowalska@example.com', 'DOC001', 'SURGEON')
+  , (2, 'Jan', 'Nowak', '987654321', 'jan.nowak@example.com', 'DOC002', 'DERMATOLOGIST');
 
 INSERT INTO Patient ( ID, FIRST_NAME, LAST_NAME, TELEPHONE_NUMBER, EMAIL, PATIENT_NUMBER, DATE_OF_BIRTH, ADDRESS_ID
                     , INSURED)
@@ -21,5 +21,5 @@ VALUES
 
 INSERT INTO MedicalTreatment (ID, DESCRIPTION, TYPE, VISIT_ID)
 VALUES
-    (1, 'Podanie leków na nadciśnienie', 'Farmakoterapia', 1)
-  , (2, 'Ćwiczenia rehabilitacyjne', 'Rehabilitacja', 2);
+    (1, 'Podanie leków na nadciśnienie', 'USG', 1)
+  , (2, 'Ćwiczenia rehabilitacyjne', 'EKG', 2);

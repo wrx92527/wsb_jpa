@@ -74,4 +74,12 @@ public class PatientTO {
     public List<VisitTO> getVisits() {
         return visits;
     }
+
+    public boolean isInsured() {
+        return insured;
+    }
+
+    public void setInsured(boolean insured) {
+        this.insured = insured;
+    }
 }
