@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.OptimisticLockException;
 import javax.persistence.RollbackException;
+import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -18,6 +19,7 @@ public class PatientVersioningTest {
     @Autowired
     private EntityManagerFactory entityManagerFactory;
 
+    @Transactional
     @Test
     public void testOptimisticLocking() {
         EntityManager em1 = entityManagerFactory.createEntityManager();

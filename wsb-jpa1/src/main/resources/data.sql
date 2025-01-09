@@ -1,7 +1,7 @@
 INSERT INTO
     Address (ID, CITY, ADDRESS_LINE1, ADDRESS_LINE2, POSTAL_CODE)
 VALUES
-    (1, 'Warszawa', 'Marszałkowska 123', 'Mieszkanie 45', '00-001')
+    (1, 'Warszawa', 'Marszałkowska 123', 'Mieszkanie 45', '62-030')
   , (2, 'Kraków', 'Floriańska 7', NULL, '31-019')
   , (3, 'Gdańsk', 'Długa 33', 'Mieszkanie 12', '80-831');
 

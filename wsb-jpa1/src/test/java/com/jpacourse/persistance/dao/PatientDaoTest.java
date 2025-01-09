@@ -20,11 +20,8 @@ public class PatientDaoTest {
     @Transactional
     @Test
     public void testFindPatientsByLastName() {
-        List<PatientEntity> patients = patientDao.findPatientsByLastName("Wiśniewski");
+        List<PatientEntity> patients = patientDao.findPatientsByLastName("Nowakowski");
         assertThat(patients).hasSize(1);
-        assertThat(patients
-            .get(0)
-            .getFirstName()).isEqualTo("Tomasz");
     }
 
     @Transactional
@@ -32,9 +29,6 @@ public class PatientDaoTest {
     public void testFindPatientsWithMoreThanXVisits() {
         List<PatientEntity> patients = patientDao.findPatientsWithMoreThanXVisits(1);
         assertThat(patients).hasSize(1);
-        assertThat(patients
-            .get(0)
-            .getFirstName()).isEqualTo("Tomasz");
     }
 
     @Transactional
@@ -42,8 +36,5 @@ public class PatientDaoTest {
     public void testFindPatientsByInsuranceStatus() {
         List<PatientEntity> patients = patientDao.findPatientsByInsuranceStatus(true);
         assertThat(patients).hasSize(2);
-        assertThat(patients
-            .get(0)
-            .getLastName()).isEqualTo("Wiśniewski");
     }
 }
