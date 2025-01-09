@@ -25,7 +25,8 @@ public class VisitMapper {
                 .map(treatment -> treatment
                     .getType()
                     .name())
-                .collect(Collectors.toList())
+                .collect(Collectors.toList()),
+            entity.getDescription()
         );
     }
 }

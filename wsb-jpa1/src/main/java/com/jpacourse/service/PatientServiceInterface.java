@@ -1,6 +1,7 @@
 package com.jpacourse.service;
 
 import com.jpacourse.dto.PatientTO;
+import com.jpacourse.dto.VisitTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,4 +19,6 @@ public interface PatientServiceInterface {
     );
 
     public void deletePatientById(Long id);
+
+    public List<VisitTO> findVisitsByPatientId(Long patientId);
 }

@@ -7,10 +7,11 @@ import com.jpacourse.persistence.entity.VisitEntity;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public class JPAPatientDao extends AbstractDao<PatientEntity, Long> implements PatientDao {
-    @Override
+
     public VisitEntity scheduleVisit(Long patientId, Long doctorId, LocalDateTime date, String description) {
         PatientEntity patient = entityManager.find(PatientEntity.class, patientId);
 
@@ -30,10 +31,34 @@ public class JPAPatientDao extends AbstractDao<PatientEntity, Long> implements P
         visit.setTime(date);
         visit.setDescription(description);
 
-        patient.getVisits().add(visit);
+        patient
+            .getVisits()
+            .add(visit);
 
         entityManager.merge(patient);
 
         return visit;
+    }
+
+    public List<PatientEntity> findPatientsByLastName(String lastName) {
+        return entityManager
+            .createQuery("SELECT p FROM PatientEntity p WHERE p.lastName = :lastName", PatientEntity.class)
+            .setParameter("lastName", lastName)
+            .getResultList();
+    }
+
+    public List<PatientEntity> findPatientsWithMoreThanXVisits(int visitCount) {
+        return entityManager
+            .createQuery(
+                "SELECT p FROM PatientEntity p WHERE SIZE(p.visits) > :visitCount", PatientEntity.class)
+            .setParameter("visitCount", visitCount)
+            .getResultList();
+    }
+
+    public List<PatientEntity> findPatientsByInsuranceStatus(boolean insured) {
+        return entityManager
+            .createQuery("SELECT p FROM PatientEntity p WHERE p.insured = :insured", PatientEntity.class)
+            .setParameter("insured", insured)
+            .getResultList();
     }
 }

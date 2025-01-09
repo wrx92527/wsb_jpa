@@ -13,11 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class DaoPatientServiceTest {
+public class PatientServiceTest {
 
     @Autowired
     private PatientServiceInterface patientService;
@@ -81,7 +82,7 @@ public class DaoPatientServiceTest {
         assertThat(patientTO.getFirstName()).isEqualTo(patient.getFirstName());
         assertThat(patientTO.getLastName()).isEqualTo(patient.getLastName());
         assertThat(patientTO.isInsured()).isEqualTo(patient.isInsured());
-        assertThat(patientTO.getVisits()).hasSize(3);
+        assertThat(patientTO.getVisits()).hasSize(4);
 
         VisitTO visitTO = patientTO
             .getVisits()
@@ -89,5 +90,15 @@ public class DaoPatientServiceTest {
         assertThat(visitTO.getDoctorFirstName()).isEqualTo(doctor.getFirstName());
         assertThat(visitTO.getDoctorLastName()).isEqualTo(doctor.getLastName());
         assertThat(visitTO.getTreatmentTypes()).hasSize(1);
+    }
+
+    @Transactional
+    @Test
+    public void testFindVisitsByPatientId() {
+        List<VisitTO> visits = patientService.findVisitsByPatientId(1L);
+        assertThat(visits).hasSize(2);
+        assertThat(visits
+            .get(0)
+            .getDescription()).isEqualTo("Wizyta kontrolna serca");
     }
 }

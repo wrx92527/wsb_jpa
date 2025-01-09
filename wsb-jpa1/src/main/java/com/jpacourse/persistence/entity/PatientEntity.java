@@ -1,112 +1,114 @@
 package com.jpacourse.persistence.entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-
-import javax.mail.Address;
-import javax.persistence.*;
 
 @Entity
 @Table(name = "patient")
 public class PatientEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Version
+    @Column(name = "version", nullable = false, columnDefinition = "int default 0")
+    private int version;
 
-	@Column(nullable = false)
-	private String firstName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(nullable = false)
-	private String lastName;
+    @Column(nullable = false)
+    private String firstName;
 
-	@Column(
-		nullable = false,
-		length = 15
-	)
-	private String telephoneNumber;
+    @Column(nullable = false)
+    private String lastName;
 
-	@Column(length = 150)
-	private String email;
+    @Column(
+        nullable = false,
+        length = 15
+    )
+    private String telephoneNumber;
 
-	@Column(
-		nullable = false,
-		unique = true,
-		length = 100
-	)
-	private String patientNumber;
+    @Column(length = 150)
+    private String email;
 
-	@Column(nullable = false)
-	private LocalDate dateOfBirth;
+    @Column(
+        nullable = false,
+        unique = true,
+        length = 100
+    )
+    private String patientNumber;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(
-		name = "address_id",
-		foreignKey = @ForeignKey(name = "fk_patient_address")
-	)
-	private AddressEntity address;
+    @Column(nullable = false)
+    private LocalDate dateOfBirth;
 
-	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<VisitEntity> visits;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(
+        name = "address_id",
+        foreignKey = @ForeignKey(name = "fk_patient_address")
+    )
+    private AddressEntity address;
 
-	@Column(nullable = false)
-	private boolean insured;
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<VisitEntity> visits;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(nullable = false)
+    private boolean insured;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getTelephoneNumber() {
-		return telephoneNumber;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setTelephoneNumber(String telephoneNumber) {
-		this.telephoneNumber = telephoneNumber;
-	}
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getPatientNumber() {
-		return patientNumber;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setPatientNumber(String patientNumber) {
-		this.patientNumber = patientNumber;
-	}
+    public String getPatientNumber() {
+        return patientNumber;
+    }
 
-	public LocalDate getDateOfBirth() {
-		return dateOfBirth;
-	}
+    public void setPatientNumber(String patientNumber) {
+        this.patientNumber = patientNumber;
+    }
 
-	public void setDateOfBirth(LocalDate dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
     public AddressEntity getAddress() {
         return address;
@@ -130,5 +132,13 @@ public class PatientEntity {
 
     public void setInsured(boolean insured) {
         this.insured = insured;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }

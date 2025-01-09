@@ -9,19 +9,22 @@ public class VisitTO {
     private String doctorFirstName;
     private String doctorLastName;
     private List<String> treatmentTypes;
+    private final String description;
 
     public VisitTO(
         Long id,
         LocalDateTime time,
         String doctorFirstName,
         String doctorLastName,
-        List<String> treatmentTypes
+        List<String> treatmentTypes,
+        String description
     ) {
         this.id = id;
         this.time = time;
         this.doctorFirstName = doctorFirstName;
         this.doctorLastName = doctorLastName;
         this.treatmentTypes = treatmentTypes;
+        this.description = description;
     }
 
     public Long getId() {
@@ -42,5 +45,9 @@ public class VisitTO {
 
     public List<String> getTreatmentTypes() {
         return treatmentTypes;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }
